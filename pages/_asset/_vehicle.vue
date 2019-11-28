@@ -23,7 +23,38 @@
           </div>
         </div>
       </div>
-      <div v-if="page === 1" />
+      <div v-if="page === 1" class="p-2">
+        <h1 class="font-italic">
+          Hi Javier,
+        </h1>
+        <p class="font-italic">
+          Thank you for thing in your safety
+        </p>
+        <div class="row bg-white p-1 m-0 my-2">
+          <div class="col py-2">
+            How are you today?
+          </div>
+          <div class="col p-0">
+            <CustomSwitch v-model="switchVal" pass-text="GOOD" fail-text="WICKED" class="float-right" />
+          </div>
+        </div>
+        <div class="row bg-white p-1 m-0 my-2">
+          <div class="col py-2">
+            Ready to be safety
+          </div>
+          <div class="col p-0">
+            <CustomSwitch v-model="switchVal" pass-text="GOOD" fail-text="WICKED" class="float-right" />
+          </div>
+        </div>
+        <div class="p-2">
+          <b-button @click="login" variant="danger" size="lg" squared class="col-md-12 my-3">
+            START POI
+          </b-button>
+          <b-button @click="login" size="lg" squared class="col-md-12 my-3 primary-bg">
+            REPORT DAMAGE
+          </b-button>
+        </div>
+      </div>
       <div v-else />
     </div>
     <CustomSwitch v-model="switchVal" />
@@ -60,6 +91,12 @@ export default {
 <style scoped>
 .page {
   background: #F2F2F2;
+}
+.primary-bg {
+  background: #013A71;
+}
+.bg-white {
+  background: white;
 }
 .head-text {
   font-weight: 300;
