@@ -4,7 +4,7 @@
     <div class="p-2 m-auto">
       <b-form-input v-model="employeeNumber" placeholder="Employee Number" class="col-md-12 my-2 rounded-0" />
       <b-form-select v-model="station" :options="options" class="col-md-12 my-2 rounded-0" />
-      <b-button variant="danger" size="lg" squared class="col-md-12 my-3">
+      <b-button @click="login" variant="danger" size="lg" squared class="col-md-12 my-3">
         LOG IN
       </b-button>
     </div>
@@ -24,6 +24,11 @@ export default {
         { value: 3, text: 'Station 3' },
         { value: 4, text: 'Station 4' }
       ]
+    }
+  },
+  methods: {
+    login () {
+      this.$emit('login')
     }
   }
 }
