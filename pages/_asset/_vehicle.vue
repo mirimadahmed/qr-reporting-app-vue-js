@@ -62,10 +62,12 @@
         </b-button>
         <div v-if="showModal" class="custom-modal">
           <div v-if="!isValid" class="error custom-modal-content m-auto align-middle">
-            <div>
+            <div class="font-weight-bold">
               POI INCOMPLETE
             </div>
-            <div>PLEASE COMPLETE IT!</div>
+            <div class="font-weight-bold">
+              PLEASE COMPLETE IT!
+            </div>
             <b-button @click="showModal = false" variant="danger" size="lg" squared class="col-md-12 my-3">
               BACK
             </b-button>
