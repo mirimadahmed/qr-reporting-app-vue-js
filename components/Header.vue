@@ -16,5 +16,7 @@ export default {
 </script>
 
 <style scoped>
-
+div {
+  font-weight: 700;
+}
 </style>

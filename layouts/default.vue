@@ -25,5 +25,6 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   background: #F2F2F2;
+  color: #013A71;
 }
 </style>
