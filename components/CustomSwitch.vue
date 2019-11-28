@@ -1,18 +1,18 @@
 <template>
   <div class="my-switch row text-center badge-pill p-0">
-    <div v-if="local_value === 1" class="row text-center m-0 p-0">
-      <div @click="local_value = 2" class="col-md-4 buttons">
+    <div v-if="local_value === 1" class="w-100">
+      <div @click="local_value = 2" class="buttons button-left">
         {{ wrongText }}
       </div>
-      <div class="switch-normal col-md-2 md-offset-2 rounded-circle" />
-      <div @click="local_value = 3" class="col-md-4 buttons">
+      <div class="switch-normal rounded-circle" />
+      <div @click="local_value = 3" class="buttons button-right">
         {{ correctText }}
       </div>
     </div>
-    <div @click="local_value = 1" v-else-if="local_value === 2" class="col-md-auto switch-fail badge-pill h-100 buttons">
+    <div @click="local_value = 1" v-else-if="local_value === 2" class="switch-fail badge-pill buttons">
       {{ failText }}
     </div>
-    <div @click="local_value = 1" v-else class="col-md-auto switch-pass ml-auto badge-pill h-100 buttons">
+    <div @click="local_value = 1" v-else class="switch-pass ml-auto badge-pill buttons">
       {{ passText }}
     </div>
   </div>
@@ -63,7 +63,8 @@ export default {
 
 <style scoped>
 .my-switch {
-  width: 10vw;
+  width: 100px;
+  height: 28px;
   border: 2px #bdc3c7 solid;
   background: white;
   margin: 10px;
@@ -72,23 +73,33 @@ export default {
   border: 2px #c0392b solid;
   background: #e74c3c;
   margin-top: -3px;
-  margin-bottom: -3px;
   margin-left: -3px;
+  height: 30px;
 }
 .switch-pass {
   border: 2px #27ae60 solid;
   background: #2ecc71;
   margin-top: -3px;
-  margin-bottom: -3px;
   margin-right: -3px;
+  height: 30px;
 }
 .switch-normal {
   border: 2px #bdc3c7 solid;
   background: #ecf0f1;
+  width: 30px;
+  height: 30px;
+  float: left;
   margin-top: -3px;
-  margin-bottom: -3px;
 }
 .buttons {
   cursor: pointer;
+}
+.button-left {
+  width: 33.33%;
+  float: left;
+}
+.button-right {
+  width: 33.33%;
+  float: right;
 }
 </style>
