@@ -196,6 +196,19 @@ export default {
         this.showModal = true
       }
     },
+    sendMail () {
+      const sgMail = require('@sendgrid/mail')
+      sgMail.setApiKey('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')
+      const msg = {
+        to: 'mirimadahmed@outlook.com',
+        // to: 'jvrgonzaleze@gmail.com',
+        from: 'developer@magooapp.com',
+        subject: 'Sending with Twilio SendGrid is Fun',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>'
+      }
+      sgMail.send(msg)
+    },
     resetPage () {
       window.location.reload()
     }
