@@ -1,15 +1,30 @@
 <template>
   <div>
-    <Header />
+    <Submissions :data="data" v-if="data" />
   </div>
 </template>
 
 <script>
-import Header from '~/components/Header.vue'
+import api from '~/api'
+import Submissions from '~/components/Submissions.vue'
 
 export default {
   components: {
-    Header
+    Submissions
+  },
+  data () {
+    return {
+      data: null
+    }
+  },
+  mounted () {
+    this.fetch()
+  },
+  methods: {
+    async fetch () {
+      const { data } = await api.getData()
+      this.data = data
+    }
   }
 }
 </script>
