@@ -21,6 +21,8 @@ export default {
   },
   data () {
     return {
+      assetNumber: this.$route.params.asset,
+      vehicleType: this.$route.params.vehicle,
       switchVal: 1,
       switchVal1: 2,
       switchVal2: 3
