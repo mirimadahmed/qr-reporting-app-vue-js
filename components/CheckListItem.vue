@@ -68,10 +68,10 @@ export default {
   background: white;
 }
 .red-bg {
-  background: #e74c3c;
+  background: #E31836;
 }
 .red-light-bg {
-  background: #c0918b;
+  background: #E7CDCE;
 }
 .border-radius {
   border-radius: 20px;

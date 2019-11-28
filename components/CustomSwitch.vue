@@ -1,5 +1,5 @@
 <template>
-  <div class="my-switch row text-center badge-pill p-0">
+  <div :class="myBg" class="my-switch row text-center badge-pill p-0">
     <div v-if="local_value === 1" class="w-100">
       <div @click="local_value = 2" class="buttons button-left">
         {{ wrongText }}
@@ -51,6 +51,14 @@ export default {
       local_value: this.value
     }
   },
+  computed: {
+    myBg () {
+      let bg = 'normal-bg'
+      if (this.value === 2) { bg = 'fail-bg' }
+      if (this.value === 3) { bg = 'pass-bg' }
+      return bg
+    }
+  },
   watch: {
     local_value (val) {
       if (this.value !== val) {
@@ -62,16 +70,24 @@ export default {
 </script>
 
 <style scoped>
+.normal-bg {
+  background: white;
+}
+.fail-bg {
+  background: #E7B5AC;
+}
+.pass-bg {
+  background: #CDD0A5;
+}
 .my-switch {
   width: 100px;
   height: 28px;
   border: 2px #bdc3c7 solid;
-  background: white;
   margin: 10px;
 }
 .switch-fail {
-  border: 2px #c0392b solid;
-  background: #e74c3c;
+  border: 2px #97280E solid;
+  background: #E72302;
   margin-top: -3px;
   margin-left: -3px;
   height: 30px;
@@ -79,8 +95,8 @@ export default {
   font-weight: 600;
 }
 .switch-pass {
-  border: 2px #27ae60 solid;
-  background: #2ecc71;
+  border: 2px #8FAA46 solid;
+  background: #C0D107;
   margin-top: -3px;
   margin-right: -3px;
   height: 30px;
