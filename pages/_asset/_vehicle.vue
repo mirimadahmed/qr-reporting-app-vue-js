@@ -47,29 +47,33 @@
           </div>
         </div>
         <div class="p-2">
-          <b-button @click="login" variant="danger" size="lg" squared class="col-md-12 my-3">
+          <b-button @click="page = 2" variant="danger" size="lg" squared class="col-md-12 my-3">
             START POI
           </b-button>
-          <b-button @click="login" size="lg" squared class="col-md-12 my-3 primary-bg">
+          <b-button size="lg" squared class="col-md-12 my-3 primary-bg">
             REPORT DAMAGE
           </b-button>
         </div>
       </div>
-      <div v-else />
+      <div v-else>
+        <CheckList v-model="checkList" />
+        <b-button variant="danger" size="lg" squared class="col-md-12 my-3">
+          SUBMIT POI
+        </b-button>
+      </div>
     </div>
-    <CustomSwitch v-model="switchVal" />
-    <CustomSwitch v-model="switchVal1" />
-    <CustomSwitch v-model="switchVal2" />
   </div>
 </template>
 
 <script>
 import CustomSwitch from '~/components/CustomSwitch.vue'
+import CheckList from '~/components/CheckList.vue'
 import Login from '~/components/Login.vue'
 import Header from '~/components/Header.vue'
 
 export default {
   components: {
+    CheckList,
     CustomSwitch,
     Header,
     Login
@@ -78,11 +82,59 @@ export default {
     return {
       assetNumber: this.$route.params.asset,
       vehicleType: this.$route.params.vehicle,
-      switchVal: 1,
-      switchVal1: 2,
-      switchVal2: 3,
       isLoggedIn: false,
-      page: 1
+      page: 1,
+      switchVal: 1,
+      checkList: [
+        {
+          title: 'BRAKES',
+          value: 1,
+          comments: '',
+          ubication: ''
+        },
+        {
+          title: 'TYRES',
+          value: 1,
+          comments: '',
+          ubication: ''
+        },
+        {
+          title: 'FUEL',
+          value: 1,
+          comments: '',
+          ubication: ''
+        },
+        {
+          title: 'SHAPE',
+          value: 1,
+          comments: '',
+          ubication: ''
+        },
+        {
+          title: 'BRAKE LIGHTS',
+          value: 1,
+          comments: '',
+          ubication: ''
+        },
+        {
+          title: 'HEAD LIGHTS',
+          value: 1,
+          comments: '',
+          ubication: ''
+        },
+        {
+          title: 'HORN',
+          value: 1,
+          comments: '',
+          ubication: ''
+        },
+        {
+          title: 'SEAT BELT',
+          value: 1,
+          comments: '',
+          ubication: ''
+        }
+      ]
     }
   }
 }
