@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div>
+    <Header />
     <CustomSwitch v-model="switchVal" />
     <CustomSwitch v-model="switchVal1" />
     <CustomSwitch v-model="switchVal2" />
@@ -8,10 +9,12 @@
 
 <script>
 import CustomSwitch from '~/components/CustomSwitch.vue'
+import Header from '~/components/Header.vue'
 
 export default {
   components: {
-    CustomSwitch
+    CustomSwitch,
+    Header
   },
   data () {
     return {
@@ -24,8 +27,4 @@ export default {
 </script>
 
 <style>
-.container {
-  margin: 50 auto;
-  min-height: 100vh;
-}
 </style>
