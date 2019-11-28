@@ -35,7 +35,7 @@
             How are you today?
           </div>
           <div class="col p-0">
-            <CustomSwitch v-model="switchVal" pass-text="GOOD" fail-text="WICKED" class="float-right" />
+            <CustomSwitch v-model="switchVal1" pass-text="GOOD" fail-text="WICKED" class="float-right" />
           </div>
         </div>
         <div class="row bg-white p-1 m-0 my-2">
@@ -43,7 +43,7 @@
             Ready to be safety
           </div>
           <div class="col p-0">
-            <CustomSwitch v-model="switchVal" pass-text="GOOD" fail-text="WICKED" class="float-right" />
+            <CustomSwitch v-model="switchVal2" pass-text="GOOD" fail-text="WICKED" class="float-right" />
           </div>
         </div>
         <div class="p-2">
@@ -111,7 +111,8 @@ export default {
       vehicleType: this.$route.params.vehicle,
       isLoggedIn: false,
       page: 1,
-      switchVal: 1,
+      switchVal1: 1,
+      switchVal2: 1,
       showModal: false,
       checkList: [
         {
@@ -181,15 +182,14 @@ export default {
     },
     async submitPOI () {
       if (this.isValid) {
-        const data = { checkList: this.checkList.map((item) => {
-          const ret = item
-          ret.value = String(item.value)
-          return ret
-        }),
-        empId: this.user.empId,
-        station: this.user.station }
-        data.assetNumber = this.assetNumber
-        data.vehicleType = this.vehicleType
+        this.sendMail()
+        const data = {
+          checkList: this.checkList,
+          empId: this.user.empId,
+          station: this.user.station,
+          assetNumber: this.assetNumber,
+          vehicleType: this.vehicleType
+        }
         await api.putData(data)
         this.showModal = true
       } else {
@@ -200,12 +200,21 @@ export default {
       const sgMail = require('@sendgrid/mail')
       sgMail.setApiKey('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')
       const msg = {
-        to: 'mirimadahmed@outlook.com',
-        // to: 'jvrgonzaleze@gmail.com',
+        // to: 'imad@spacesly.com',
+        to: 'jvrgonzaleze@gmail.com',
         from: 'developer@magooapp.com',
-        subject: 'Sending with Twilio SendGrid is Fun',
-        text: 'and easy to do anywhere, even with Node.js',
-        html: '<strong>and easy to do anywhere, even with Node.js</strong>'
+        subject: 'POI Submission',
+        text: `Submitted by: ${this.user.empId}
+                Station: ${this.user.station}
+                Vehicle Type: ${this.vehicleType}
+                Asset No.: ${this.assetNumber}`,
+        html: `<strong>
+                Submitted by: ${this.user.empId}
+                Station: ${this.user.station}
+                Vehicle Type: ${this.vehicleType}
+                Asset No.: ${this.assetNumber}
+              </strong>
+              `
       }
       sgMail.send(msg)
     },
