@@ -61,7 +61,7 @@
           SUBMIT POI
         </b-button>
         <div v-if="showModal" class="custom-modal">
-          <div class="error custom-modal-content m-auto align-middle">
+          <div v-if="error" class="error custom-modal-content m-auto align-middle">
             <div>
               POI INCOMPLETE
             </div>
@@ -70,9 +70,18 @@
               BACK
             </b-button>
           </div>
-          <!-- <div class="success custom-modal-content">
-            SUCCESS
-          </div> -->
+          <div v-else @click="resetPage" class="success custom-modal-content m-auto align-middle">
+            <h3 class="my-3 font-weight-bold">
+              YOUR POI HAS BEEN SUBMITTED
+            </h3>
+            <img src="~/assets/click.png" alt="">
+            <div class="my-3 font-weight-bold">
+              BE SAFE
+            </div>
+            <div class="font-weight-bold">
+              CLICK IT
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -100,6 +109,7 @@ export default {
       page: 1,
       switchVal: 1,
       showModal: false,
+      error: false,
       checkList: [
         {
           title: 'BRAKES',
@@ -150,6 +160,11 @@ export default {
           ubication: ''
         }
       ]
+    }
+  },
+  methods: {
+    resetPage () {
+      window.location.reload()
     }
   }
 }
