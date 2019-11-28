@@ -61,7 +61,7 @@
           SUBMIT POI
         </b-button>
         <div v-if="showModal" class="custom-modal">
-          <div v-if="error" class="error custom-modal-content m-auto align-middle">
+          <div v-if="!isValid" class="error custom-modal-content m-auto align-middle">
             <div>
               POI INCOMPLETE
             </div>
@@ -109,7 +109,6 @@ export default {
       page: 1,
       switchVal: 1,
       showModal: false,
-      error: false,
       checkList: [
         {
           title: 'BRAKES',
@@ -160,6 +159,15 @@ export default {
           ubication: ''
         }
       ]
+    }
+  },
+  computed: {
+    isValid () {
+      let valid = true
+      this.checkList.forEach((item) => {
+        if (item.value === 1) { valid = false }
+      })
+      return valid
     }
   },
   methods: {
