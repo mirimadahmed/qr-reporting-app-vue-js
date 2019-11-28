@@ -182,7 +182,6 @@ export default {
     },
     async submitPOI () {
       if (this.isValid) {
-        this.sendMail()
         const data = {
           checkList: this.checkList,
           empId: this.user.empId,
@@ -195,28 +194,6 @@ export default {
       } else {
         this.showModal = true
       }
-    },
-    sendMail () {
-      const sgMail = require('@sendgrid/mail')
-      sgMail.setApiKey('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')
-      const msg = {
-        // to: 'imad@spacesly.com',
-        to: 'jvrgonzaleze@gmail.com',
-        from: 'developer@magooapp.com',
-        subject: 'POI Submission',
-        text: `Submitted by: ${this.user.empId}
-                Station: ${this.user.station}
-                Vehicle Type: ${this.vehicleType}
-                Asset No.: ${this.assetNumber}`,
-        html: `<strong>
-                Submitted by: ${this.user.empId}
-                Station: ${this.user.station}
-                Vehicle Type: ${this.vehicleType}
-                Asset No.: ${this.assetNumber}
-              </strong>
-              `
-      }
-      sgMail.send(msg)
     },
     resetPage () {
       window.location.reload()
