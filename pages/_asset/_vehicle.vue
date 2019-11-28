@@ -57,9 +57,23 @@
       </div>
       <div v-else>
         <CheckList v-model="checkList" />
-        <b-button variant="danger" size="lg" squared class="col-md-12 my-3">
+        <b-button @click="showModal = true" variant="danger" size="lg" squared class="col-md-12 my-3">
           SUBMIT POI
         </b-button>
+        <div v-if="showModal" class="custom-modal">
+          <div class="error custom-modal-content m-auto align-middle">
+            <div>
+              POI INCOMPLETE
+            </div>
+            <div>PLEASE COMPLETE IT!</div>
+            <b-button @click="showModal = false" variant="danger" size="lg" squared class="col-md-12 my-3">
+              BACK
+            </b-button>
+          </div>
+          <!-- <div class="success custom-modal-content">
+            SUCCESS
+          </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -85,6 +99,7 @@ export default {
       isLoggedIn: false,
       page: 1,
       switchVal: 1,
+      showModal: false,
       checkList: [
         {
           title: 'BRAKES',
@@ -159,5 +174,20 @@ export default {
   font-weight: 600;
   font-size: 20px;
   color: #013A71;
+}
+.custom-modal {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.596);
+  display: flex;
+}
+.custom-modal-content {
+  text-align: center;
+  padding: 50px 20px;
+  color: white;
+  flex: 1;
 }
 </style>
