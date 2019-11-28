@@ -75,6 +75,8 @@ export default {
   margin-top: -3px;
   margin-left: -3px;
   height: 30px;
+  color: white;
+  font-weight: 600;
 }
 .switch-pass {
   border: 2px #27ae60 solid;
@@ -82,6 +84,8 @@ export default {
   margin-top: -3px;
   margin-right: -3px;
   height: 30px;
+  color: white;
+  font-weight: 600;
 }
 .switch-normal {
   border: 2px #bdc3c7 solid;
