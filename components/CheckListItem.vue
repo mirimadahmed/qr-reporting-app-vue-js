@@ -25,7 +25,7 @@
       <div class="col-md-12 m-0 p-0">
         <b-form-textarea
           id="textarea"
-          v-model="local_value.ubication"
+          v-model="local_value.ubsi"
           placeholder="Ubication:"
           rows="1"
           max-rows="2"

@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <Header />
-    <Login @login="isLoggedIn = true" v-if="!isLoggedIn" />
+    <Login @login="login" v-if="!isLoggedIn" />
     <div v-else class="p-2">
       <div class="asset-info">
         <div class="row m-0">
@@ -57,7 +57,7 @@
       </div>
       <div v-else>
         <CheckList v-model="checkList" />
-        <b-button @click="showModal = true" variant="danger" size="lg" squared class="col-md-12 my-3">
+        <b-button @click="submitPOI" variant="danger" size="lg" squared class="col-md-12 my-3">
           SUBMIT POI
         </b-button>
         <div v-if="showModal" class="custom-modal">
@@ -91,6 +91,7 @@
 </template>
 
 <script>
+import api from '~/api/index'
 import CustomSwitch from '~/components/CustomSwitch.vue'
 import CheckList from '~/components/CheckList.vue'
 import Login from '~/components/Login.vue'
@@ -105,6 +106,7 @@ export default {
   },
   data () {
     return {
+      user: null,
       assetNumber: this.$route.params.asset,
       vehicleType: this.$route.params.vehicle,
       isLoggedIn: false,
@@ -116,49 +118,49 @@ export default {
           title: 'BRAKES',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         },
         {
           title: 'TYRES',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         },
         {
           title: 'FUEL',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         },
         {
           title: 'SHAPE',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         },
         {
           title: 'BRAKE LIGHTS',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         },
         {
           title: 'HEAD LIGHTS',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         },
         {
           title: 'HORN',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         },
         {
           title: 'SEAT BELT',
           value: 1,
           comments: '',
-          ubication: ''
+          ubsi: ''
         }
       ]
     }
@@ -173,6 +175,27 @@ export default {
     }
   },
   methods: {
+    login (user) {
+      this.isLoggedIn = true
+      this.user = user
+    },
+    async submitPOI () {
+      if (this.isValid) {
+        const data = { checkList: this.checkList.map((item) => {
+          const ret = item
+          ret.value = String(item.value)
+          return ret
+        }),
+        empId: this.user.empId,
+        station: this.user.station }
+        data.assetNumber = this.assetNumber
+        data.vehicleType = this.vehicleType
+        await api.putData(data)
+        this.showModal = true
+      } else {
+        this.showModal = true
+      }
+    },
     resetPage () {
       window.location.reload()
     }

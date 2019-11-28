@@ -28,7 +28,11 @@ export default {
   },
   methods: {
     login () {
-      this.$emit('login')
+      const user = {
+        empId: this.employeeNumber,
+        station: this.station
+      }
+      this.$emit('login', user)
     }
   }
 }
