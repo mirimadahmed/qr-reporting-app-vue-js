@@ -8,7 +8,7 @@
       <div v-for="(check, j) in item.checkList" :key="j">
         Name: {{ check.name }}
         Status: {{ check.value }}
-        Comments: {{ check.comments }}
+        Comments: {{ check.comment }}
         Ubxification: {{ check.ubsi }}
       </div>
     </div>
