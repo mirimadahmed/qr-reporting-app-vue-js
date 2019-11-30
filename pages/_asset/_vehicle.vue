@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header />
+    <Header :station="user.station" />
     <Login @login="login" v-if="!isLoggedIn" />
     <div v-else class="p-2">
       <div class="asset-info">
@@ -106,7 +106,10 @@ export default {
   },
   data () {
     return {
-      user: null,
+      user: {
+        station: '',
+        empId: ''
+      },
       assetNumber: this.$route.params.asset,
       vehicleType: this.$route.params.vehicle,
       isLoggedIn: false,
@@ -122,7 +125,7 @@ export default {
           ubsi: ''
         },
         {
-          title: 'TYRES',
+          title: 'TIRES',
           value: 1,
           comments: '',
           ubsi: ''

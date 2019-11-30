@@ -1,17 +1,29 @@
 <template>
   <div class="row m-0 my-2 p-2 text-left">
     <div class="col">
-      ALBANY, NY
+      {{ station }}
     </div>
     <div class="col text-center">
-      NOV 18 2019
+      {{ currentDate }}
     </div>
   </div>
 </template>
 
 <script>
-export default {
+import moment from 'moment'
 
+export default {
+  props: {
+    station: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    currentDate () {
+      return moment().format('MMM DD YYYY').toString().toUpperCase()
+    }
+  }
 }
 </script>
 

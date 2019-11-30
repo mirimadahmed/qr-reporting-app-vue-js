@@ -19,10 +19,13 @@ export default {
       station: null,
       options: [
         { value: null, text: 'Select Station' },
-        { value: 1, text: 'Station 1' },
-        { value: 2, text: 'Station 2' },
-        { value: 3, text: 'Station 3' },
-        { value: 4, text: 'Station 4' }
+        { value: 'Dulles, VA', text: 'IAD' },
+        { value: 'Philadelphia, PA', text: 'PHL' },
+        { value: 'Albany, NY', text: 'ALB' },
+        { value: 'Windsor Locks, CT', text: 'BDL' },
+        { value: 'Baltimore, MA', text: 'BWI' },
+        { value: 'Providence, RI', text: 'PVD' },
+        { value: 'Raleigh, NC', text: 'RDU' }
       ]
     }
   },
