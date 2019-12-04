@@ -72,7 +72,7 @@
               BACK
             </b-button>
           </div>
-          <div v-else @click="resetPage" class="success custom-modal-content m-auto align-middle">
+          <a v-else href="https://google.com" class="success custom-modal-content m-auto align-middle">
             <h3 class="my-3 font-weight-bold">
               YOUR POI HAS BEEN SUBMITTED
             </h3>
@@ -83,7 +83,7 @@
             <div class="font-weight-bold">
               CLICK IT
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@ export default {
       }
     },
     resetPage () {
-      window.location.reload()
+      window.open('https://google.com')
     }
   }
 }
