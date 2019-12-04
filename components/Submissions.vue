@@ -9,7 +9,7 @@
         Name: {{ check.name }}
         Status: {{ check.value }}
         Comments: {{ check.comment }}
-        Ubxification: {{ check.ubsi }}
+        Location: {{ check.ubsi }}
       </div>
     </div>
   </div>
