@@ -5,7 +5,7 @@
         {{ local_value.title }}
       </div>
       <div class="col py-2 text-right">
-        &#9432;
+        <a href="http://player.piksel.com/player.php?video_uuid=w4jl9w54&categoryId=59859" class="stretched-link">&#9432;</a>
       </div>
       <div class="col p-0">
         <custom-switch v-model="local_value.value" />
@@ -26,7 +26,7 @@
         <b-form-textarea
           id="textarea"
           v-model="local_value.ubsi"
-          placeholder="Ubication:"
+          placeholder="Location:"
           rows="1"
           max-rows="2"
           class="border-radius"
