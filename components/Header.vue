@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     currentDate () {
-      return moment().format('MMM DD YYYY').toString().toUpperCase()
+      return moment().format('HH:MM - MMM DD YYYY').toString().toUpperCase()
     }
   }
 }
