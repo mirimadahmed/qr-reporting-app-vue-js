@@ -1,7 +1,7 @@
 <template>
   <b-navbar class="bg">
     <b-navbar-nav>
-      <img src="~/assets/logo.png" alt="" style="width:100px;">
+      <img src="~/assets/logo.svg" alt="" style="width:100px;">
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
       <em>POI</em>
