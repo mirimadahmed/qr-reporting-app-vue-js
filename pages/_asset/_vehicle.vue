@@ -25,7 +25,7 @@
       </div>
       <div v-if="page === 1" class="p-2">
         <h1 class="font-italic">
-          Hi Javier,
+          Hi {{ user.name }},
         </h1>
         <p class="font-italic">
           Thank you for thing in your safety
@@ -108,6 +108,7 @@ export default {
     return {
       user: {
         station: '',
+        name: '',
         empId: ''
       },
       assetNumber: this.$route.params.asset,
@@ -187,7 +188,7 @@ export default {
       if (this.isValid) {
         const data = {
           checkList: this.checkList,
-          empId: this.user.empId,
+          empId: this.user.id,
           station: this.user.station,
           assetNumber: this.assetNumber,
           vehicleType: this.vehicleType
