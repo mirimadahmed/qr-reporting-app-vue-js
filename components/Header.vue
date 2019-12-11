@@ -19,10 +19,20 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      now: new Date()
+    }
+  },
   computed: {
     currentDate () {
-      return moment().format('HH:MM - MMM DD YYYY').toString().toUpperCase()
+      return moment(this.now).format('h:mm - MMM DD YYYY').toString().toUpperCase()
     }
+  },
+  created () {
+    setInterval(function () {
+      this.now = new Date()
+    }, 1000 * 60)
   }
 }
 </script>
