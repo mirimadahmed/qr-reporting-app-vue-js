@@ -1,10 +1,10 @@
 <template>
   <b-navbar class="bg">
     <b-navbar-nav>
-      <img src="~/assets/logo.png" alt="" style="width:100px;">
+      <img src="~/assets/logo.png" alt="" class="w-25">
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
-      <em>POI</em>
+      <em class="w-25">POI</em>
     </b-navbar-nav>
   </b-navbar>
 </template>
