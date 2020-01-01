@@ -4,8 +4,8 @@
       <div class="col py-2">
         {{ local_value.title }}
       </div>
-      <div class="col py-2 text-right">
-        <a href="http://player.piksel.com/player.php?video_uuid=w4jl9w54&categoryId=59859" class="stretched-link">&#9432;</a>
+      <div class="col py-2 text-center">
+        <a :href="local_value.video" class="stretched-link">&#9432;</a>
       </div>
       <div class="col p-0">
         <custom-switch v-model="local_value.value" />
