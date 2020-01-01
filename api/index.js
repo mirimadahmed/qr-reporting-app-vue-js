@@ -5,8 +5,17 @@ const axiosObj = axios.create({
 })
 
 export default {
+  checkAsset (id) {
+    return axiosObj.get(`/get_asset.php?asset_no=${id}`)
+  },
+  login (asset, id, pass) {
+    return axiosObj.get(`/login.php?emp_id=${id}&password=${pass}&asset_no=${asset}`)
+  },
+  getStations () {
+    return axiosObj.get('/get_stations.php')
+  },
   putData (data) {
-    return axiosObj.post('/set_values.php', data)
+    return axiosObj.post('/set_submission.php', data)
   },
   getData () {
     return axiosObj.get('/get_values.php')
