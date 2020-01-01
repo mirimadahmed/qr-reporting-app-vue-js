@@ -29,18 +29,39 @@
         </div>
         <div v-if="user.type === 'mechanic'">
           <div v-if="submissions.length > 0">
-            <div v-for="item in submissions" :key="item.id" class="shadow-sm p-1 mb-2">
-              <div v-for="detail in item.details" :key="detail.id">
-                <div v-if="detail.value === '2'">
-                  {{ detail.name }} broken:
-                  Comment: {{ detail.comment }}
-                  Location: {{ detail.location }}
+            <b-alert :show="error.length > 0" variant="danger">
+              {{ error }}
+            </b-alert>
+            <div v-for="item in submissions" :key="item.id">
+              <div v-if="hasProblems(item)" class="shadow p-2 mb-2">
+                <div v-for="detail in item.details" :key="detail.id" class="px-2">
+                  <div v-if="detail.value === '2'">
+                    <p> {{ detail.name }} broken:</p>
+                    <p>Comment: {{ detail.comment }}</p>
+                    <p>Location: {{ detail.location }}</p>
+                    <hr>
+                  </div>
+                </div>
+                <div class="p-2">
+                  <b-form-textarea
+                    id="textarea"
+                    v-model="item.comment"
+                    placeholder="Comments:"
+                    rows="3"
+                    max-rows="6"
+                    class="border-radius"
+                  />
+                </div>
+                <div class="p-2">
+                  <b-button @click="submitFix(item)" variant="danger" size="lg" squared class="col-md-12 my-3">
+                    FIX
+                  </b-button>
                 </div>
               </div>
             </div>
           </div>
-          <div v-else>
-            No problems in this asset
+          <div v-else class="text-center p-2">
+            No problems in this asset.
           </div>
         </div>
         <div v-else>
@@ -114,8 +135,6 @@
       Asset not found. Please scan correct QR code.
     </div>
   </div>
-  </div>
-  </div>
 </template>
 
 <script>
@@ -153,7 +172,8 @@ export default {
       switchVal2: 1,
       showModal: false,
       checkList: [],
-      submissions: []
+      submissions: [],
+      error: ''
     }
   },
   computed: {
@@ -169,6 +189,29 @@ export default {
     this.check()
   },
   methods: {
+    async submitFix (submission) {
+      this.error = ''
+      if (submission.comment.length > 0) {
+        const { data } = await api.fixSubmission(submission.id, submission.comment)
+        if (data.error === 0) {
+          const index = this.submissions.findIndex(item => item.id === submission.id)
+          this.submissions.splice(index, 1)
+        } else {
+          this.error = 'Something went wrong'
+        }
+      } else {
+        this.error = 'Must add some comment'
+      }
+    },
+    hasProblems (submission) {
+      let has = false
+      submission.details.forEach((item) => {
+        if (item.value === '2') {
+          has = true
+        }
+      })
+      return has
+    },
     startPOI () {
       this.page = 2
       this.startTime = moment().format('h:mm:ss - MMM DD YYYY').toString().toUpperCase()
