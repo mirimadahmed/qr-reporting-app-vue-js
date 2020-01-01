@@ -16,12 +16,14 @@
 </template>
 
 <script>
+import api from '~/api/index'
 export default {
   data () {
     return {
       error: '',
       employeeNumber: '',
       password: '',
+      asset: this.$route.params.asset,
       station: null,
       users: [
         {
@@ -34,19 +36,19 @@ export default {
           id: '456789',
           name: 'Steve',
           password: '789',
-          station: 'Philadelphia, PA'
+          station: 'Dulles, VA'
         },
         {
           id: '789101',
           name: 'Alex',
           password: '101',
-          station: 'Albany, NY'
+          station: 'Dulles, VA'
         },
         {
           id: '101112',
           name: 'Tommy',
           password: '111',
-          station: 'Windsor Locks, CT'
+          station: 'Dulles, VA'
         }
       ],
       options: [
@@ -62,18 +64,13 @@ export default {
     }
   },
   methods: {
-    login () {
+    async login () {
       this.error = ''
-      let foundUser = null
-      this.users.forEach((user) => {
-        if (user.id === this.employeeNumber && user.password === this.password) {
-          foundUser = user
-        }
-      })
-      if (foundUser === null) {
-        this.error = 'Wrong user credentials.'
+      const { data } = await api.login(this.asset, this.employeeNumber, this.password)
+      if (data.error === 0) {
+        this.$emit('login', data)
       } else {
-        this.$emit('login', foundUser)
+        this.error = 'Wrong user credentials.'
       }
     }
   }
