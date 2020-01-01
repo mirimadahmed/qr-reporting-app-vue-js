@@ -5,6 +5,9 @@ const axiosObj = axios.create({
 })
 
 export default {
+  fixSubmission (id, comment) {
+    return axiosObj.get(`/update_submission.php?id=${id}&comment=${comment}`)
+  },
   checkAsset (id) {
     return axiosObj.get(`/get_asset.php?asset_no=${id}`)
   },
