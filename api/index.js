@@ -1,6 +1,6 @@
 import axios from 'axios'
 const axiosObj = axios.create({
-  baseURL: 'https://bookable.pk/poi'
+  baseURL: 'http://backen.b2hawcciux.us-east-1.elasticbeanstalk.com'
   // headers: { 'Cache-Control': 'no-cache', 'Content-Type': 'multipart/form-data' }
 })
 
