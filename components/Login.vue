@@ -26,7 +26,7 @@ export default {
     return {
       error: '',
       employeeNumber: '',
-      password: '',
+      password: 'IAD',
       asset: this.$route.params.asset,
       station: null,
       isLoading: false,
