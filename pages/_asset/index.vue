@@ -2,7 +2,7 @@
   <div class="page">
     <Header :station="user.station" />
     <div v-if="isLoading" class="text-center">
-      Checking asset number.
+      <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" variant="primary" />
     </div>
     <div v-else-if="assetFound">
       <Login @login="login" v-if="!isLoggedIn" />
@@ -76,30 +76,16 @@
               <div class="col py-2">
                 How are you today?
               </div>
-              <div class="col px-0 py-1">
-                <toggle-button
-                  v-model="switchVal1"
-                  :height="35"
-                  :width="90"
-                  :labels="{ checked: 'GOOD', unchecked: 'WICKED' }"
-                  :color="{ checked: '#C0D107', unchecked: '#E72302' }"
-                  class="float-right m-0"
-                />
+              <div class="col p-0">
+                <CustomSwitch v-model="switchVal1" pass-text="GOOD" fail-text="WICKED" class="float-right" />
               </div>
             </div>
             <div class="row bg-white p-1 m-0 my-2">
               <div class="col py-2">
                 Ready to be safety
               </div>
-              <div class="col px-0 py-1">
-                <toggle-button
-                  v-model="switchVal2"
-                  :height="35"
-                  :width="90"
-                  :labels="{ checked: 'GOOD', unchecked: 'WICKED' }"
-                  :color="{ checked: '#C0D107', unchecked: '#E72302' }"
-                  class="float-right m-0"
-                />
+              <div class="col p-0">
+                <CustomSwitch v-model="switchVal2" pass-text="GOOD" fail-text="WICKED" class="float-right" />
               </div>
             </div>
             <div class="p-2">
@@ -155,6 +141,7 @@
 import moment from 'moment'
 import api from '~/api/index'
 import CheckList from '~/components/CheckList.vue'
+import CustomSwitch from '~/components/CustomSwitch.vue'
 import Login from '~/components/Login.vue'
 import Header from '~/components/Header.vue'
 
@@ -162,6 +149,7 @@ export default {
   components: {
     CheckList,
     Header,
+    CustomSwitch,
     Login
   },
   data () {
@@ -204,7 +192,9 @@ export default {
     async submitFix (submission) {
       this.error = ''
       if (submission.comment.length > 0) {
+        this.isLoading = true
         const { data } = await api.fixSubmission(submission.id, submission.comment)
+        this.isLoading = false
         if (data.error === 0) {
           const index = this.submissions.findIndex(item => item.id === submission.id)
           this.submissions.splice(index, 1)
@@ -244,7 +234,7 @@ export default {
         this.user.forms.forEach(item => this.checkList.push({
           form_field_id: item.id,
           title: item.name,
-          value: true,
+          value: 1,
           comments: '',
           ubsi: '',
           video: item.video
@@ -274,7 +264,9 @@ export default {
           submission_date: this.endTime,
           start_datetime: this.startTime
         }
+        this.isLoading = true
         await api.putData(data)
+        this.isLoading = false
         this.showModal = true
       } else {
         this.showModal = true

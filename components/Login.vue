@@ -1,16 +1,21 @@
 <template>
   <div class="text-center p-2 mt-5">
-    <h1>LOGIN</h1>
-    <div class="p-2 m-auto">
-      <b-alert :show="error.length > 0" variant="danger">
-        {{ error }}
-      </b-alert>
-      <b-form-input v-model="employeeNumber" placeholder="Employee Number" class="col-md-12 my-2 rounded-0" />
-      <b-form-input v-model="password" type="password" placeholder="Password" class="col-md-12 my-2 rounded-0" />
-      <!-- <b-form-select v-model="station" :options="options" class="col-md-12 my-2 rounded-0" /> -->
-      <b-button @click="login" variant="danger" size="lg" squared class="col-md-12 my-3">
-        LOG IN
-      </b-button>
+    <div v-if="isLoading" class="text-center">
+      <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" variant="primary" />
+    </div>
+    <div v-else>
+      <h1>LOGIN</h1>
+      <div class="p-2 m-auto">
+        <b-alert :show="error.length > 0" variant="danger">
+          {{ error }}
+        </b-alert>
+        <b-form-input v-model="employeeNumber" placeholder="Employee Number" class="col-md-12 my-2 rounded-0" />
+        <b-form-input v-model="password" type="password" placeholder="Password" class="col-md-12 my-2 rounded-0" />
+        <!-- <b-form-select v-model="station" :options="options" class="col-md-12 my-2 rounded-0" /> -->
+        <b-button @click="login" variant="danger" size="lg" squared class="col-md-12 my-3">
+          LOG IN
+        </b-button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +30,7 @@ export default {
       password: '',
       asset: this.$route.params.asset,
       station: null,
+      isLoading: false,
       users: [
         {
           id: '123456',
@@ -66,7 +72,9 @@ export default {
   methods: {
     async login () {
       this.error = ''
+      this.isLoading = true
       const { data } = await api.login(this.asset, this.employeeNumber, this.password)
+      this.isLoading = false
       if (data.error === 0) {
         this.$emit('login', data)
       } else {

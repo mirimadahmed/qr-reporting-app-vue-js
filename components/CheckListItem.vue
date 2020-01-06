@@ -1,6 +1,6 @@
 <template>
   <div class="my-2">
-    <div :class="!local_value.value ? 'red-bg' : 'white-bg'" class="row m-0 p-2 shadow-sm">
+    <div :class="local_value.value === 2 ? 'red-bg' : 'white-bg'" class="row m-0 p-2 shadow-sm">
       <div class="col py-2">
         {{ local_value.title }}
       </div>
@@ -8,17 +8,10 @@
         <a :href="local_value.video" class="stretched-link">&#9432;</a>
       </div>
       <div class="col px-0 py-1">
-        <toggle-button
-          v-model="local_value.value"
-          :height="30"
-          :width="70"
-          :labels="labels"
-          :color="colors"
-          class="m-0 float-right"
-        />
+        <custom-switch v-model="local_value.value" />
       </div>
     </div>
-    <div v-if="!local_value.value" class="row m-0 p-2 red-light-bg">
+    <div v-if="local_value.value === 2" class="row m-0 p-2 red-light-bg">
       <div class="col-md-12 m-0 my-2 p-0">
         <b-form-textarea
           id="textarea"
@@ -44,7 +37,11 @@
 </template>
 
 <script>
+import CustomSwitch from '~/components/CustomSwitch.vue'
 export default {
+  components: {
+    CustomSwitch
+  },
   props: {
     value: {
       type: Object,
@@ -73,7 +70,7 @@ export default {
   background: white;
 }
 .red-bg {
-  background: rgb(221, 88, 108);
+  background: #E31836;
 }
 .red-light-bg {
   background: #E7CDCE;
