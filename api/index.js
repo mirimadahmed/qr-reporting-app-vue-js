@@ -1,6 +1,6 @@
 import axios from 'axios'
 const axiosObj = axios.create({
-  baseURL: 'https://bookable.pk/poi'
+  baseURL: 'https://api.dlpvi.com'
   // headers: { 'Cache-Control': 'no-cache', 'Content-Type': 'multipart/form-data' }
 })
 
