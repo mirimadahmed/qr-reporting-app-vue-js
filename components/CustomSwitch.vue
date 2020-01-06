@@ -1,5 +1,8 @@
 <template>
-  <div :class="myBg" class="my-switch row text-center badge-pill p-0">
+  <client-only>
+    <toggle-button v-model="local_value" :height="30" :width="60" :labels="labels" color="#82C7EB" />
+  </client-only>
+  <!-- <div :class="myBg" class="my-switch row text-center badge-pill p-0">
     <div v-if="local_value === 1" class="w-100">
       <div @click="local_value = 2" class="buttons button-left">
         {{ wrongText }}
@@ -15,7 +18,7 @@
     <div @click="local_value = 1" v-else class="switch-pass ml-auto badge-pill buttons">
       {{ passText }}
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -48,15 +51,8 @@ export default {
   },
   data () {
     return {
-      local_value: this.value
-    }
-  },
-  computed: {
-    myBg () {
-      let bg = 'normal-bg'
-      if (this.value === 2) { bg = 'fail-bg' }
-      if (this.value === 3) { bg = 'pass-bg' }
-      return bg
+      local_value: this.value,
+      labels: { checked: this.correctText, unchecked: this.wrongText }
     }
   },
   watch: {
