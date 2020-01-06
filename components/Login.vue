@@ -10,8 +10,7 @@
           {{ error }}
         </b-alert>
         <b-form-input v-model="employeeNumber" placeholder="Employee Number" class="col-md-12 my-2 rounded-0" />
-        <b-form-input v-model="password" type="password" placeholder="Password" class="col-md-12 my-2 rounded-0" />
-        <!-- <b-form-select v-model="station" :options="options" class="col-md-12 my-2 rounded-0" /> -->
+        <b-form-select v-model="password" :options="options" class="col-md-12 my-2 rounded-0" />
         <b-button @click="login" variant="danger" size="lg" squared class="col-md-12 my-3">
           LOG IN
         </b-button>
@@ -69,7 +68,16 @@ export default {
       ]
     }
   },
+  mounted () {
+    this.fetch()
+  },
   methods: {
+    async fetch () {
+      this.isLoading = true
+      const { data } = await api.getStations()
+      this.isLoading = false
+      this.options = data.map(option => option.station_name)
+    },
     async login () {
       this.error = ''
       this.isLoading = true

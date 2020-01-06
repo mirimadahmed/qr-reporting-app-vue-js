@@ -240,7 +240,7 @@ export default {
           video: item.video
         }))
       } else {
-        this.submissions = this.user.submissions
+        this.submissions = this.user.submissions.filter(submission => this.hasProblems(submission))
       }
     },
     async submitPOI () {
