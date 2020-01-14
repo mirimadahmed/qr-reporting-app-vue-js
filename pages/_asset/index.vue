@@ -92,7 +92,7 @@
               <b-button @click="startPOI" variant="danger" size="lg" squared class="col-md-12 my-3">
                 START PVI
               </b-button>
-              <b-button size="lg" squared class="col-md-12 my-3 primary-bg">
+              <b-button @click="startPOI" size="lg" squared class="col-md-12 my-3 primary-bg">
                 REPORT DAMAGE
               </b-button>
             </div>
