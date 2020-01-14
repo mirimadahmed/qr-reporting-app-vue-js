@@ -90,7 +90,7 @@
             </div>
             <div class="p-2">
               <b-button @click="startPOI" variant="danger" size="lg" squared class="col-md-12 my-3">
-                START POI
+                START PVI
               </b-button>
               <b-button size="lg" squared class="col-md-12 my-3 primary-bg">
                 REPORT DAMAGE
@@ -100,12 +100,12 @@
           <div v-else>
             <CheckList v-model="checkList" />
             <b-button @click="submitPOI" variant="danger" size="lg" squared class="col-md-12 my-3">
-              SUBMIT POI
+              SUBMIT PVI
             </b-button>
             <div v-if="showModal" class="custom-modal">
               <div v-if="!isValid" class="error custom-modal-content m-auto align-middle">
                 <div class="font-weight-bold">
-                  POI INCOMPLETE
+                  PVI INCOMPLETE
                 </div>
                 <div class="font-weight-bold">
                   PLEASE COMPLETE IT!
@@ -116,7 +116,7 @@
               </div>
               <a v-else href="https://google.com" class="success custom-modal-content m-auto align-middle">
                 <h3 class="my-3 font-weight-bold">
-                  YOUR POI HAS BEEN SUBMITTED
+                  YOUR PVI HAS BEEN SUBMITTED
                 </h3>
                 <img src="~/assets/click.png" alt="">
                 <div class="my-3 font-weight-bold">

@@ -5,7 +5,7 @@
         {{ local_value.title }}
       </div>
       <div class="col py-2 text-center">
-        <a :href="local_value.video" class="stretched-link">&#9432;</a>
+        <a :href="local_value.video" target="_blank" class="stretched-link">&#9432;</a>
       </div>
       <div class="col px-0 py-1">
         <custom-switch v-model="local_value.value" />
